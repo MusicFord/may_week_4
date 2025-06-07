@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>madeByMusicF</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      height: 100%;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Видео фон */
+    .background-video-wrapper {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      overflow: hidden;
+    }
+
+    .background-video-wrapper video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Затемнение */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    .spacer {
+      height: 80vh;
+    }
+
+    .scaled-content-wrapper {
+      transform: scale(0.9);
+      transform-origin: top center;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      color: white;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .image-container {
+      position: relative;
+      width: 75%;
+      z-index: 20;
+    }
+       .gif-overlay {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+            margin-top: 0;
+        }
+
+    .background-img {
+      width: 100%;
+      display: block;
+      border-radius: 10px;
+      border: 3px solid #fff;
+    }
+.telegram-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  padding-bottom: 10px;
+}
+    /* Telegram кнопка */
+    .telegram-button {
+      
+      width: 128px;
+  height: 128px;
+  display: block;
+  z-index: 30;
+    }
+
+    .telegram-button img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .telegram-button img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+    }
+
+    /* Анимация появления */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Видео фон -->
+  <div class="background-video-wrapper">
+    <video autoplay loop muted playsinline>
+      <source src="rudra.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- Затемнение -->
+  <div class="overlay"></div>
+
+  <!-- Заставка -->
+  <div class="spacer"></div>
+
+  <!-- Контент -->
+  <div class="scaled-content-wrapper">
+    <h2 class="fade-in">made_by_MusicFord</h2>
+
+    <div class="gallery">
+      <div class="image-container">
+        <img src="44.png" class="background-img" alt="Фон 1">
+        <img src="4.gif" class="gif-overlay" alt="GIF 2">
+        <!-- Кнопка Telegram -->
+        <div class="telegram-button-container">
+        <a href="https://t.me/yourchannel" target="_blank" class="telegram-button">
+          <img src="tg.png" alt="Telegram">
+        </a>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <!-- Скрипт появления -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
